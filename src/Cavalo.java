@@ -37,15 +37,31 @@ public class Cavalo extends Peca {
         possiveisMovimentos.add(tabuleiro.getPosicoes().get(posicaoNoTabuleiro + 15));
 
         for (Posicao posicao : tabuleiro.getPosicoes()) {
+            int indice =  tabuleiro.getPosicoes().indexOf(posicao);
             if (tabuleiro.getPosicoes().indexOf(posicao) == posicaoNoTabuleiro - 17 ||
-                    tabuleiro.getPosicoes().indexOf(posicao) == posicaoNoTabuleiro - 15 ||
-                    tabuleiro.getPosicoes().indexOf(posicao) == posicaoNoTabuleiro - 10 ||
-                    tabuleiro.getPosicoes().indexOf(posicao) == posicaoNoTabuleiro - 6 ||
-                    tabuleiro.getPosicoes().indexOf(posicao) == posicaoNoTabuleiro + 6 ||
-                    tabuleiro.getPosicoes().indexOf(posicao) == posicaoNoTabuleiro + 10 ||
-                    tabuleiro.getPosicoes().indexOf(posicao) == posicaoNoTabuleiro + 15 ||
-                    tabuleiro.getPosicoes().indexOf(posicao) == posicaoNoTabuleiro + 17) {
-                possiveisMovimentos.add(posicao);
+                    indice == posicaoNoTabuleiro - 15 ||
+                    indice == posicaoNoTabuleiro - 10 ||
+                    indice == posicaoNoTabuleiro - 6 ||
+                    indice == posicaoNoTabuleiro + 6 ||
+                    indice == posicaoNoTabuleiro + 10 ||
+                    indice == posicaoNoTabuleiro + 15 ||
+                    indice == posicaoNoTabuleiro + 17) {
+                // COLUNA H
+                if ((posicaoNoTabuleiro + 1) % 8 == 0 && (
+                        indice == posicaoNoTabuleiro - 15 ||
+                        indice == posicaoNoTabuleiro - 6 ||
+                        indice == posicaoNoTabuleiro + 10 ||
+                        indice == posicaoNoTabuleiro + 17 )) {
+                    possiveisMovimentos.add(posicao);
+                }
+                // COLUNA A
+                else if ((posicaoNoTabuleiro) % 8 == 0 && (
+                        indice == posicaoNoTabuleiro - 17 ||
+                                indice == posicaoNoTabuleiro - 10 ||
+                                indice == posicaoNoTabuleiro + 6 ||
+                                indice == posicaoNoTabuleiro + 15 )) {
+                    possiveisMovimentos.add(posicao);
+                }
             }
         }
         return possiveisMovimentos;
