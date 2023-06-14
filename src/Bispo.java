@@ -7,39 +7,39 @@ public class Bispo extends Peca {
         int posicaoNoTabuleiro =
                 tabuleiro.getPosicoes().indexOf(posicaoAtual);
         ArrayList<Posicao> possiveisMovimentos = new ArrayList<>();
-        for (int i = (posicaoNoTabuleiro % 8 == 0 ?
+        for (int i = (validaExtremidade(posicaoNoTabuleiro) ?
                 64 : posicaoNoTabuleiro + 7);
              i < tabuleiro.getPosicoes().size();
              i += 7) {
 
-            if(i % 8 == 0 || verificaPeca(tabuleiro.getPosicoes().get(i), possiveisMovimentos)) {
+            if(verificaPeca(tabuleiro.getPosicoes().get(i), possiveisMovimentos) || validaExtremidade(i)) {
                 break;
             }
         }
-        for (int i = ((posicaoNoTabuleiro + 1) % 8 == 0 ?
+        for (int i = (validaExtremidade(posicaoNoTabuleiro + 1) ?
                 -1 : posicaoNoTabuleiro - 7);
              i >= 0;
              i -= 7) {
 
-            if((i + 1) % 8 == 0 || verificaPeca(tabuleiro.getPosicoes().get(i), possiveisMovimentos)) {
+            if(verificaPeca(tabuleiro.getPosicoes().get(i), possiveisMovimentos) || validaExtremidade(i + 1)) {
                 break;
             }
         }
-        for (int i = ((posicaoNoTabuleiro + 1) % 8 == 0 ?
+        for (int i = (validaExtremidade(posicaoNoTabuleiro + 1) ?
                 64 : posicaoNoTabuleiro + 9);
              i < tabuleiro.getPosicoes().size();
              i += 9) {
 
-            if((i + 1) % 8 == 0 || verificaPeca(tabuleiro.getPosicoes().get(i), possiveisMovimentos)) {
+            if(verificaPeca(tabuleiro.getPosicoes().get(i), possiveisMovimentos) || (validaExtremidade(i + 1) )) {
                 break;
             }
         }
-        for (int i = (posicaoNoTabuleiro % 8 == 0 ?
+        for (int i = (validaExtremidade(posicaoNoTabuleiro) ?
                 -1 : posicaoNoTabuleiro - 9);
              i >= 0;
              i -= 9) {
             
-            if(i % 8 == 0 || verificaPeca(tabuleiro.getPosicoes().get(i), possiveisMovimentos)) {
+            if( verificaPeca(tabuleiro.getPosicoes().get(i), possiveisMovimentos) || validaExtremidade(i)) {
                 break;
             }
         }
