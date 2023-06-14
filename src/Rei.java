@@ -3,6 +3,10 @@ import java.util.ArrayList;
 public class Rei extends Peca{
     private boolean primMov;
 
+    public Rei(String cor) {
+        super(cor);
+    }
+
     @Override
     public ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro) {
         Posicao posicaoAtual = this.getPosicao();

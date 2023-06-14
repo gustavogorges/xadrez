@@ -45,7 +45,6 @@ public class Tabuleiro {
                 posicoes.get(i).setPeca(new Rei("Branco"));
             }
         }
-        posicoes.get(0).setPeca(new Torre());
     }
 
     public ArrayList<Posicao> getPosicoes() {

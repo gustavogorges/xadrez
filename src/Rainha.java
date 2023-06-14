@@ -2,6 +2,10 @@ import java.util.ArrayList;
 
 public class Rainha extends Peca{
 
+    public Rainha(String cor) {
+        super(cor);
+    }
+
     @Override
     public ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro) {
         Posicao posicaoAtual = this.getPosicao();

@@ -3,6 +3,10 @@ import java.util.ArrayList;
 public class Torre extends Peca{
     private boolean primMov;
 
+    public Torre(String cor) {
+        super(cor);
+    }
+
     @Override
     public ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro) {
         Posicao posicaoAtual = this.getPosicao();
