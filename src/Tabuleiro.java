@@ -56,4 +56,10 @@ public class Tabuleiro {
     ) {
 
     }
+
+    @Override
+    public String toString() {
+        return "Tabuleiro " +
+                "posicoes=" + posicoes;
+    }
 }

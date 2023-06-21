@@ -4,10 +4,9 @@ public abstract class Peca {
     private String cor;
     private Posicao posicao;
 
-    public Peca(String cor){
-        cor = this.cor;
+    public Peca(String cor) {
+        this.cor = cor;
     }
-
 
     public boolean verificaPeca(Posicao posicao, ArrayList<Posicao> possiveisMovimentos) {
         if(posicao.getPeca() == null) {
@@ -21,7 +20,7 @@ public abstract class Peca {
 
     }
 
-    public void mover(
+    public boolean mover(
             Tabuleiro tabuleiro,
             Posicao posicao
     ) {
@@ -31,9 +30,10 @@ public abstract class Peca {
                 posicao.setPeca(this); //Atribuindo a peça para a nova posição no tabuleiro
                 this.posicao.setPeca(null); //Removendo a peça da posição anterior do tabuleiro
                 this.posicao = posicao; //Trocand a posição atual da peça
-                break;
+                return true;
             }
         }
+        return false;
     }
 
     public boolean validaExtremidade(int posicaoNoTabuleiro) {
@@ -53,5 +53,13 @@ public abstract class Peca {
 
     public String getCor() {
         return cor;
+    }
+
+    @Override
+    public String toString() {
+        return "Peca{" +
+                "Cor='" + cor + '\'' +
+                ", Posicao=" + posicao +
+                '}';
     }
 }

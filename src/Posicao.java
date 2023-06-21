@@ -8,4 +8,10 @@ public class Posicao {
     public Peca getPeca() {
         return peca;
     }
+
+    @Override
+    public String toString() {
+        return "Posicao " +
+                "peca=" + peca ;
+    }
 }
