@@ -46,4 +46,11 @@ public class Jogador {
 
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
 }
