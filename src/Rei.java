@@ -46,8 +46,10 @@ public class Rei extends Peca{
 
     @Override
     public String toString() {
-        return "Rei " +
-                "primMov=" + primMov +
-                ", " + super.toString();
+        if (this.getCor().equals("Branco")) {
+            return "♔";
+        } else {
+            return "♚";
+        }
     }
 }

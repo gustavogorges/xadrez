@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Torre extends Peca{
+public class Torre extends Peca {
     private boolean primMov = true;
 
     public Torre(String cor) {
@@ -19,7 +19,7 @@ public class Torre extends Peca{
              i < tabuleiro.getPosicoes().size();
              i += 8) {
 
-            if(verificaPeca(tabuleiro.getPosicoes().get(i), possiveisMovimentos)) {
+            if (verificaPeca(tabuleiro.getPosicoes().get(i), possiveisMovimentos)) {
                 break;
             }
         }
@@ -27,7 +27,7 @@ public class Torre extends Peca{
              i >= 0;
              i -= 8) {
 
-            if(verificaPeca(tabuleiro.getPosicoes().get(i), possiveisMovimentos)) {
+            if (verificaPeca(tabuleiro.getPosicoes().get(i), possiveisMovimentos)) {
                 break;
             }
         }
@@ -36,19 +36,18 @@ public class Torre extends Peca{
              i < tabuleiro.getPosicoes().size();
              i++) {
 
-            if((verificaPeca(tabuleiro.getPosicoes().get(i),
+            if ((verificaPeca(tabuleiro.getPosicoes().get(i),
                     possiveisMovimentos)) ||
-                    validaExtremidade(i + 1))
-                     {
+                    validaExtremidade(i + 1)) {
                 break;
             }
         }
         for (int i = (validaExtremidade(posicaoNoTabuleiro) ?
                 -1 : posicaoNoTabuleiro - 1);
              i >= 0;
-             i --) {
+             i--) {
 
-            if( verificaPeca(tabuleiro.getPosicoes().get(i), possiveisMovimentos) || validaExtremidade(i) ) {
+            if (verificaPeca(tabuleiro.getPosicoes().get(i), possiveisMovimentos) || validaExtremidade(i)) {
                 break;
             }
         }
@@ -58,8 +57,10 @@ public class Torre extends Peca{
 
     @Override
     public String toString() {
-        return "Torre " +
-                "primMov=" + primMov +
-                ", " + super.toString();
+        if (this.getCor().equals("Branco")) {
+            return "♖";
+        } else {
+            return "♜";
+        }
     }
 }

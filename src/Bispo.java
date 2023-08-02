@@ -66,6 +66,11 @@ public class Bispo extends Peca {
 
     @Override
     public String toString() {
-        return "Bispo "+super.toString();
+        if (this.getCor().equals("Branco")) {
+            return "♗";
+        } else {
+            return "♝";
+        }
     }
+
 }

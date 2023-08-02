@@ -61,8 +61,10 @@ public class Peao extends Peca{
 
     @Override
     public String toString() {
-        return "Peao{" +
-                "primMov=" + primMov +
-                ", " + super.toString();
+        if (this.getCor().equals("Branco")) {
+            return "♙";
+        } else {
+            return "♟";
+        }
     }
 }
