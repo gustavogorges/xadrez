@@ -24,7 +24,7 @@ public abstract class Peca {
             Tabuleiro tabuleiro,
             Posicao posicao
     ) {
-        ArrayList<Posicao> possiveisPosicoes = possiveisMovimentos(tabuleiro);
+        ArrayList<Posicao> possiveisPosicoes = possiveisMovimentos(tabuleiro, posicao);
         for (Posicao posicaoPossivel: possiveisPosicoes) {
             if(posicaoPossivel == posicao) {
                 posicao.setPeca(this); //Atribuindo a peça para a nova posição no tabuleiro
@@ -41,7 +41,8 @@ public abstract class Peca {
     }
 
     public abstract ArrayList<Posicao> possiveisMovimentos(
-            Tabuleiro tabuleiro
+            Tabuleiro tabuleiro,
+            Posicao posicaoAtual
     );
 
     public Posicao getPosicao() {

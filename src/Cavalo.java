@@ -7,10 +7,9 @@ public class Cavalo extends Peca {
     }
 
     @Override
-    public ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro) {
+    public ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro, Posicao posicaoAtual) {
         ArrayList<Posicao> possiveisMovimentos = new ArrayList<>();
 
-        Posicao posicaoAtual = this.getPosicao();
         int posicaoNoTabuleiro =
                 tabuleiro.getPosicoes().indexOf(posicaoAtual);
 

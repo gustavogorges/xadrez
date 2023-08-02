@@ -61,10 +61,10 @@ public class Tabuleiro {
         StringBuilder tabuleiro= new StringBuilder();
         for (int i = 0; i <64 ; i++) {
             if (i%8 ==0 && i!= 0 && i!=63 ){
-                tabuleiro.append("\n-------------------------------\n");
-                tabuleiro.append(" [").append(posicoes.get(i).getPeca()!=null ?posicoes.get(i).getPeca(): "  " ).append("] ");
+                tabuleiro.append("\n-----------------------------------------\n");
+                tabuleiro.append(" ["+i).append(posicoes.get(i).getPeca()!=null ? posicoes.get(i).getPeca() : " " ).append("] ");
             }else {
-                tabuleiro.append(" [").append(posicoes.get(i).getPeca()!=null ?posicoes.get(i).getPeca(): "  " ).append("] ");
+                tabuleiro.append(" ["+i).append(posicoes.get(i).getPeca()!=null ? posicoes.get(i).getPeca() : " " ).append("] ");
             }
 
         }

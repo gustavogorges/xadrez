@@ -7,8 +7,7 @@ public class Bispo extends Peca {
     }
 
     @Override
-    public ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro) {
-        Posicao posicaoAtual = this.getPosicao();
+    public ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro, Posicao posicaoAtual) {
         int posicaoNoTabuleiro =
                 tabuleiro.getPosicoes().indexOf(posicaoAtual);
         ArrayList<Posicao> possiveisMovimentos = new ArrayList<>();

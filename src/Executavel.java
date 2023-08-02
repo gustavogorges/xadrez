@@ -51,12 +51,13 @@ public class Executavel {
     public static void jogar() {
         if(loginJogador()) {
             Tabuleiro tabuleiroPecas = new Tabuleiro();
-            /* ArrayList<String> tabuleiroDesign = criarTabuleiro();
-            tabuleiroDesignPecas();
-            exibirTabuleiro(tabuleiroDesign);
-            */
-            j1.setCor("Branco", tabuleiroPecas);
-            j2.setCor("Preto", tabuleiroPecas);
+
+            listaJogadores.get(0).setCor("Preto", tabuleiroPecas);
+            listaJogadores.get(1).setCor("Branco", tabuleiroPecas);
+
+            System.out.println(j1);
+            System.out.println(listaJogadores.get(0));
+
 
             System.out.println(tabuleiroPecas);
 
@@ -64,18 +65,17 @@ public class Executavel {
             System.out.println("Escolha da peça jogador 1: ");
             System.out.println(j1.getPecas());
             int escolhaPeca = sc.nextInt();
-            Peca peca = j1.getPecas().get(escolhaPeca);
-            System.out.println(peca);
+            Posicao posicao = tabuleiroPecas.getPosicoes().get(escolhaPeca);
+            System.out.println(posicao.getPeca().possiveisMovimentos(tabuleiroPecas, posicao));
 
             // Escolha da posição para o movimento
-            System.out.println(peca.possiveisMovimentos(tabuleiroPecas));
-            ArrayList<Posicao> posicoes = peca.possiveisMovimentos(tabuleiroPecas);
-            System.out.println(posicoes);
-            int escolhaPosicao = sc.nextInt();
-            Posicao posicao = posicoes.get(escolhaPosicao);
-            // Movimentação da peça escohida para a posição desejada
-            j1.moverPeca(peca, posicao, tabuleiroPecas, j2);
-            System.out.println(validarVitoria(j2));
+//            System.out.println(peca.possiveisMovimentos(tabuleiroPecas));
+
+//            int escolhaPosicao = sc.nextInt();
+//            Posicao posicao = posicoes.get(escolhaPosicao);
+//            // Movimentação da peça escohida para a posição desejada
+//            j1.moverPeca(peca, posicao, tabuleiroPecas, j2);
+//            System.out.println(validarVitoria(j2));
         } else {
             System.out.println("O login falhou");
         }
@@ -130,40 +130,6 @@ public class Executavel {
             }
         }
         return false;
-    }
-
-    public static ArrayList<String> criarTabuleiro() {
-        ArrayList<String> tabuleiro = new ArrayList<>();
-        int tamanho = 8; // Tamanho do tabuleiro (8x8)
-
-        for (int linha = 0; linha < tamanho; linha++) {
-            for (int coluna = 0; coluna < tamanho; coluna++) {
-                if ((linha + coluna) % 2 == 0) {
-                    tabuleiro.add("|   "); // Casas pretas são representadas por "|-"
-                } else {
-                    tabuleiro.add("|   "); // Casas brancas são representadas por "| "
-                }
-            }
-            tabuleiro.add("|"); // Coluna final
-            tabuleiro.add("\n"); // Nova linha
-            for (int coluna = 0; coluna < tamanho; coluna++) {
-                tabuleiro.add("----"); // Representação das divisões horizontais
-            }
-            tabuleiro.add("-"); // Fim da linha (borda do tabuleiro)
-            tabuleiro.add("\n"); // Nova linha
-        }
-
-        return tabuleiro;
-    }
-
-    public static void tabuleiroDesignPecas() {
-
-    }
-
-    public static void exibirTabuleiro(ArrayList<String> tabuleiro) {
-        for (String tabu : tabuleiro) {
-            System.out.print(tabu);
-        }
     }
 }
 
