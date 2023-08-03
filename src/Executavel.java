@@ -6,6 +6,8 @@ public class Executavel {
     static Scanner sc = new Scanner(System.in);
     static ArrayList<Jogador> listaJogadores = new ArrayList<Jogador>();
     static Jogador j1,j2;
+    static Jogador jogadorAtual;
+    static int cont;
     public static void main(String[] args) {
         menuInicial();
     }
@@ -22,35 +24,43 @@ public class Executavel {
     public static void menuInicial() {
         int opcao;
         do {
-            System.out.println("""
-                    1- Nova Conta
-                    2- Jogar
-                    3- Visualizar Contas
-                    """);
-            opcao = sc.nextInt();
-
-            switch (opcao) {
-                case 1:
-                    System.out.println("Digite o seu nome: ");
-                    String nome = sc.next();
-                    System.out.println("Digite a sua senha: ");
-                    String senha = sc.next();
-                    Jogador jogadorNovo = new Jogador(nome, senha);
-                    listaJogadores.add(jogadorNovo);
-                    System.out.println(listaJogadores);
-                    break;
-                case 2:
-                    jogar();
-                    break;
-                case 3:
-                    System.out.println(listaJogadores);
-            }
-        } while (opcao != 2 || opcao != 3);
+            jogar();
+        } while (true);
+ //       do {
+//            System.out.println("""
+//                    1- Nova Conta
+//                    2- Jogar
+//                    3- Visualizar Contas
+//                    """);
+//            opcao = sc.nextInt();
+//
+//            switch (opcao) {
+//                case 1:
+//                    System.out.println("Digite o seu nome: ");
+//                    String nome = sc.next();
+//                    System.out.println("Digite a sua senha: ");
+//                    String senha = sc.next();
+//                    Jogador jogadorNovo = new Jogador(nome, senha);
+//                    listaJogadores.add(jogadorNovo);
+//                    System.out.println(listaJogadores);
+//                    break;
+//                case 2:
+//                    jogar();
+//                    break;
+//                case 3:
+//                    System.out.println(listaJogadores);
+//            }
+//        } while (opcao != 2 || opcao != 3);
     }
 
     public static void jogar() {
-        if(loginJogador()) {
+//        if(loginJogador()) {
             Tabuleiro tabuleiroPecas = new Tabuleiro();
+
+            Jogador j1 = new Jogador("1","1");
+            listaJogadores.add(j1);
+            Jogador j2 = new Jogador("1","1");
+            listaJogadores.add(j2);
 
             listaJogadores.get(0).setCor("Preto", tabuleiroPecas);
             listaJogadores.get(1).setCor("Branco", tabuleiroPecas);
@@ -59,26 +69,41 @@ public class Executavel {
             System.out.println(listaJogadores.get(0));
 
 
-            System.out.println(tabuleiroPecas);
+            for (int i = 0; i < 9999; i++) {
+                if(i%2 == 0) {
+                    jogadorAtual = j1;
+                } else if (i%2 == 1) {
+                    jogadorAtual = j2;
+                }
+                if (jogadorAtual == j1 ) {
+                    cont = 1;
+                } else  {
+                    cont = 2;
+                }
+                System.out.println(tabuleiroPecas);
+                // Escolha da peça jogador
+                System.out.println("Escolha da peça jogador "+cont+" : ");
+                System.out.println(jogadorAtual.getPecas());
+                int escolhaPeca = sc.nextInt();
+                Posicao posicao = tabuleiroPecas.getPosicoes().get(escolhaPeca);
+                Peca pecaEscolhida = posicao.getPeca();
+                // Possiveis Movimentos
+                for (Posicao posicaoteste : tabuleiroPecas.getPosicoes()) {
+                    if (posicao.getPeca().possiveisMovimentos(tabuleiroPecas).contains(posicaoteste)) {
+                        System.out.println("Possivel movimento : " + tabuleiroPecas.getPosicoes().indexOf(posicaoteste));
+                    }
+                }
 
-            // Escolha da peça jogador 1
-            System.out.println("Escolha da peça jogador 1: ");
-            System.out.println(j1.getPecas());
-            int escolhaPeca = sc.nextInt();
-            Posicao posicao = tabuleiroPecas.getPosicoes().get(escolhaPeca);
-            System.out.println(posicao.getPeca().possiveisMovimentos(tabuleiroPecas, posicao));
+                int escolhaPosicao = sc.nextInt();
+                Posicao posicaoEscolhida = tabuleiroPecas.getPosicoes().get(escolhaPosicao);
+                jogadorAtual.moverPeca(pecaEscolhida, posicaoEscolhida, tabuleiroPecas, j2);
 
-            // Escolha da posição para o movimento
-//            System.out.println(peca.possiveisMovimentos(tabuleiroPecas));
+            }
 
-//            int escolhaPosicao = sc.nextInt();
-//            Posicao posicao = posicoes.get(escolhaPosicao);
-//            // Movimentação da peça escohida para a posição desejada
-//            j1.moverPeca(peca, posicao, tabuleiroPecas, j2);
-//            System.out.println(validarVitoria(j2));
-        } else {
-            System.out.println("O login falhou");
-        }
+
+//        } else {
+//            System.out.println("O login falhou");
+//        }
     }
 
     public static boolean loginJogador() {

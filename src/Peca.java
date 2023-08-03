@@ -4,7 +4,8 @@ public abstract class Peca {
     private String cor;
     private Posicao posicao;
 
-    public Peca(String cor) {
+    public Peca(Posicao posicao , String cor) {
+        this.posicao = posicao;
         this.cor = cor;
     }
 
@@ -24,7 +25,7 @@ public abstract class Peca {
             Tabuleiro tabuleiro,
             Posicao posicao
     ) {
-        ArrayList<Posicao> possiveisPosicoes = possiveisMovimentos(tabuleiro, posicao);
+        ArrayList<Posicao> possiveisPosicoes = possiveisMovimentos(tabuleiro);
         for (Posicao posicaoPossivel: possiveisPosicoes) {
             if(posicaoPossivel == posicao) {
                 posicao.setPeca(this); //Atribuindo a peça para a nova posição no tabuleiro
@@ -40,10 +41,11 @@ public abstract class Peca {
         return posicaoNoTabuleiro % 8 == 0;
     }
 
-    public abstract ArrayList<Posicao> possiveisMovimentos(
-            Tabuleiro tabuleiro,
-            Posicao posicaoAtual
-    );
+    public abstract ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro);
+
+    public void setPosicao(Posicao novaPosicao){
+        this.posicao = novaPosicao;
+    }
 
     public Posicao getPosicao() {
         return posicao;

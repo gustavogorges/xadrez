@@ -2,16 +2,16 @@ import java.util.ArrayList;
 
 public class Cavalo extends Peca {
 
-    public Cavalo(String cor) {
-        super(cor);
+    public Cavalo(Posicao posicao, String cor) {
+        super(posicao, cor);
     }
 
     @Override
-    public ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro, Posicao posicaoAtual) {
+    public ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro) {
         ArrayList<Posicao> possiveisMovimentos = new ArrayList<>();
 
         int posicaoNoTabuleiro =
-                tabuleiro.getPosicoes().indexOf(posicaoAtual);
+                tabuleiro.getPosicoes().indexOf(this.getPosicao());
 
         for (Posicao posicao : tabuleiro.getPosicoes()) {
             int indice =  tabuleiro.getPosicoes().indexOf(posicao);
@@ -24,26 +24,30 @@ public class Cavalo extends Peca {
                     indice == posicaoNoTabuleiro + 15 ||
                     indice == posicaoNoTabuleiro + 17) {
                 // COLUNA H
-                if (validaExtremidade(posicaoNoTabuleiro + 1) && (
-                        indice == posicaoNoTabuleiro - 15 ||
-                        indice == posicaoNoTabuleiro - 6 ||
-                        indice == posicaoNoTabuleiro + 10 ||
-                        indice == posicaoNoTabuleiro + 17 )) {
-                    verificaPeca(posicao, possiveisMovimentos);
+                if (validaExtremidade(posicaoNoTabuleiro + 1) ) {
+                    if (indice == posicaoNoTabuleiro + 15 ||
+                                    indice == posicaoNoTabuleiro + 6 ||
+                                    indice == posicaoNoTabuleiro - 10 ||
+                                    indice == posicaoNoTabuleiro - 17 ) {
+                        verificaPeca(posicao, possiveisMovimentos);
+                    }
                 }
                 // COLUNA A
-                else if (validaExtremidade(posicaoNoTabuleiro) && (
-                        indice == posicaoNoTabuleiro - 17 ||
-                                indice == posicaoNoTabuleiro - 10 ||
-                                indice == posicaoNoTabuleiro + 6 ||
-                                indice == posicaoNoTabuleiro + 15 )) {
-                    verificaPeca(posicao, possiveisMovimentos);
+                else if (validaExtremidade(posicaoNoTabuleiro) ) {
+                    if (indice == posicaoNoTabuleiro + 17 ||
+                            indice == posicaoNoTabuleiro + 10 ||
+                            indice == posicaoNoTabuleiro - 6 ||
+                            indice == posicaoNoTabuleiro - 15) {
+
+                        verificaPeca(posicao, possiveisMovimentos);
+                    }
                 }
                 // COLUNA B
-                else if (validaExtremidade(posicaoNoTabuleiro - 1) && (
-                                indice == posicaoNoTabuleiro - 10 ||
-                                indice == posicaoNoTabuleiro + 6)) {
-                    verificaPeca(posicao, possiveisMovimentos);
+                else if (validaExtremidade(posicaoNoTabuleiro - 1) ) {
+                    if( indice == posicaoNoTabuleiro - 10 ||
+                                    indice == posicaoNoTabuleiro + 6) {
+                        verificaPeca(posicao, possiveisMovimentos);
+                    }
                 }
                     // COLUNA G
                 else if (validaExtremidade(posicaoNoTabuleiro + 2) && (

@@ -3,14 +3,14 @@ import java.util.ArrayList;
 public class Rei extends Peca{
     private boolean primMov;
 
-    public Rei(String cor) {
-        super(cor);
+    public Rei(Posicao posicao, String cor) {
+        super(posicao, cor);
     }
 
     @Override
-    public ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro, Posicao posicaoAtual) {
+    public ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro) {
         int posicaoNoTabuleiro =
-                tabuleiro.getPosicoes().indexOf(posicaoAtual);
+                tabuleiro.getPosicoes().indexOf(this.getPosicao());
         ArrayList<Posicao> possiveisMovimentos = new ArrayList<>();
 
         for (Posicao posicao: tabuleiro.getPosicoes()) {

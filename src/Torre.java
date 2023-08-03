@@ -3,14 +3,14 @@ import java.util.ArrayList;
 public class Torre extends Peca {
     private boolean primMov = true;
 
-    public Torre(String cor) {
-        super(cor);
+    public Torre(Posicao posicao, String cor) {
+        super(posicao, cor);
     }
 
     @Override
-    public ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro, Posicao posicaoAtual) {
+    public ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro) {
         int posicaoNoTabuleiro =
-                tabuleiro.getPosicoes().indexOf(posicaoAtual);
+                tabuleiro.getPosicoes().indexOf(this.getPosicao());
         ArrayList<Posicao> possiveisMovimentos = new ArrayList<>();
 
 

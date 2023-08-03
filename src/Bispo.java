@@ -2,14 +2,14 @@ import java.util.ArrayList;
 
 public class Bispo extends Peca {
 
-    public Bispo(String cor) {
-        super(cor);
+    public Bispo(Posicao posicao, String cor) {
+        super(posicao, cor);
     }
 
     @Override
-    public ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro, Posicao posicaoAtual) {
+    public ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro) {
         int posicaoNoTabuleiro =
-                tabuleiro.getPosicoes().indexOf(posicaoAtual);
+                tabuleiro.getPosicoes().indexOf(this.getPosicao());
         ArrayList<Posicao> possiveisMovimentos = new ArrayList<>();
         for (int i = (validaExtremidade(posicaoNoTabuleiro) ?
                 64 : posicaoNoTabuleiro + 7);

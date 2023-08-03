@@ -2,14 +2,14 @@ import java.util.ArrayList;
 
 public class Rainha extends Peca{
 
-    public Rainha(String cor) {
-        super(cor);
+    public Rainha(Posicao posicao, String cor) {
+        super(posicao, cor);
     }
 
     @Override
-    public ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro, Posicao posicaoAtual) {
+    public ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro) {
         int posicaoNoTabuleiro =
-                tabuleiro.getPosicoes().indexOf(posicaoAtual);
+                tabuleiro.getPosicoes().indexOf(this.getPosicao());
         ArrayList<Posicao> possiveisMovimentos = new ArrayList<>();
         for (int i = (validaExtremidade(posicaoNoTabuleiro) ?
                 64 : posicaoNoTabuleiro + 7);
@@ -91,9 +91,9 @@ public class Rainha extends Peca{
     @Override
     public String toString() {
         if (this.getCor().equals("Branco")) {
-            return "♔";
+            return "♕";
         } else {
-            return "♚";
+            return "♛";
         }
     }
 
