@@ -36,10 +36,18 @@ public class Jogador {
         return valida;
     }
 
+    public void setPecas(ArrayList<Peca> pecas) {
+        this.pecas = pecas;
+    }
+
     public boolean proporEmpate(
             Jogador jogador
     ) {
         return true;
+    }
+
+    public String getCor() {
+        return cor;
     }
 
     public void desistir() {

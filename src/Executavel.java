@@ -6,7 +6,7 @@ public class Executavel {
     static Scanner sc = new Scanner(System.in);
     static ArrayList<Jogador> listaJogadores = new ArrayList<Jogador>();
     static Jogador j1,j2;
-    static Jogador jogadorAtual;
+    static Jogador jogadorAtual, JogadorEsperando;
     static int cont;
     public static void main(String[] args) {
         menuInicial();
@@ -62,11 +62,8 @@ public class Executavel {
             Jogador j2 = new Jogador("1","1");
             listaJogadores.add(j2);
 
-            listaJogadores.get(0).setCor("Preto", tabuleiroPecas);
-            listaJogadores.get(1).setCor("Branco", tabuleiroPecas);
-
-            System.out.println(j1);
-            System.out.println(listaJogadores.get(0));
+            listaJogadores.get(0).setCor("Preta", tabuleiroPecas);
+            listaJogadores.get(1).setCor("Branca", tabuleiroPecas);
 
 
             for (int i = 0; i < 9999; i++) {
@@ -82,8 +79,8 @@ public class Executavel {
                 }
                 System.out.println(tabuleiroPecas);
                 // Escolha da peça jogador
-                System.out.println("Escolha da peça jogador "+cont+" : ");
-                System.out.println(jogadorAtual.getPecas());
+                System.out.println("Escolha da peça jogador "+cont+" das peças "+jogadorAtual.getCor()+"s : ");
+//                System.out.println(jogadorAtual.getPecas());
                 int escolhaPeca = sc.nextInt();
                 Posicao posicao = tabuleiroPecas.getPosicoes().get(escolhaPeca);
                 Peca pecaEscolhida = posicao.getPeca();
@@ -97,6 +94,35 @@ public class Executavel {
                 int escolhaPosicao = sc.nextInt();
                 Posicao posicaoEscolhida = tabuleiroPecas.getPosicoes().get(escolhaPosicao);
                 jogadorAtual.moverPeca(pecaEscolhida, posicaoEscolhida, tabuleiroPecas, j2);
+
+
+
+                Peca novaPecaPromovida = null;
+                if(pecaEscolhida instanceof Peao) {
+                    int posicaoNoTabuleiro = tabuleiroPecas.getPosicoes().indexOf(pecaEscolhida.getPosicao());
+                    if(posicaoNoTabuleiro >= 0 && posicaoNoTabuleiro <= 7 || posicaoNoTabuleiro >= 56 && posicaoNoTabuleiro <= 63) {
+                        System.out.println("""
+                        Escolha uma peça para promover:
+                        1- Rainha
+                        2- Torre
+                        3- Cavalo
+                        4- Bispo
+                        """);
+                        int pecaPromovida = sc.nextInt();
+
+                        switch(pecaPromovida) {
+                            case 1 -> novaPecaPromovida = new Rainha(posicaoEscolhida, pecaEscolhida.getCor());
+                            case 2 -> novaPecaPromovida = new Torre(posicaoEscolhida, pecaEscolhida.getCor());
+                            case 3 -> novaPecaPromovida = new Cavalo(posicaoEscolhida, pecaEscolhida.getCor());
+                            case 4 -> novaPecaPromovida = new Bispo(posicaoEscolhida, pecaEscolhida.getCor());
+                        }
+                        posicaoEscolhida.setPeca(novaPecaPromovida);
+                        ArrayList<Peca> novasPecas = jogadorAtual.getPecas();
+                        novasPecas.remove(pecaEscolhida);
+                        novasPecas.add(novaPecaPromovida);
+                        jogadorAtual.setPecas(novasPecas);
+                    }
+                }
 
             }
 

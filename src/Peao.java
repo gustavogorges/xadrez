@@ -14,10 +14,13 @@ public class Peao extends Peca{
 
         ArrayList<Posicao> posicoesTabuleiro = tabuleiro.getPosicoes();
         if (this.getCor().equals("Preto")) {
+            if (posicaoNoTabuleiro > 15) {
+                this.primMov = false;
+            }
             if (posicoesTabuleiro.get(posicaoNoTabuleiro + 8).getPeca() == null) {
                 possiveisMovimentos.add(posicoesTabuleiro.get(posicaoNoTabuleiro + 8));
-                if (posicoesTabuleiro.get(posicaoNoTabuleiro + 16).getPeca() == null) {
-                    if (this.primMov) {
+                if (this.primMov) {
+                    if (posicoesTabuleiro.get(posicaoNoTabuleiro + 16).getPeca() == null) {
                         possiveisMovimentos.add(posicoesTabuleiro.get(posicaoNoTabuleiro + 16));
                     }
                 }
@@ -35,6 +38,9 @@ public class Peao extends Peca{
                 }
             }
         } else {
+            if (posicaoNoTabuleiro < 48) {
+                this.primMov = false;
+            }
             if (posicoesTabuleiro.get(posicaoNoTabuleiro - 8).getPeca() == null) {
                 possiveisMovimentos.add(posicoesTabuleiro.get(posicaoNoTabuleiro - 8));
                 if (this.primMov) {

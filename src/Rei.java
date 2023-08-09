@@ -43,6 +43,21 @@ public class Rei extends Peca{
         return possiveisMovimentos;
     }
 
+    public static boolean verificaXeque(Tabuleiro tabuleiroInimigo) {
+        for (Posicao posicaoFor : tabuleiroInimigo.getPosicoes()) {
+            if (posicaoFor.getPeca() != null) {
+                Peca pecaInimiga = posicaoFor.getPeca();
+                for (Posicao posicaoFor2 : pecaInimiga.possiveisMovimentos(tabuleiroInimigo)) {
+                    if(posicaoFor2.getPeca() instanceof Rei) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
     @Override
     public String toString() {
         if (this.getCor().equals("Branco")) {
