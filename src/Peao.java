@@ -13,7 +13,7 @@ public class Peao extends Peca{
         int posicaoNoTabuleiro = tabuleiro.getPosicoes().indexOf(this.getPosicao());
 
         ArrayList<Posicao> posicoesTabuleiro = tabuleiro.getPosicoes();
-        if (this.getCor().equals("Preto")) {
+        if (this.getCor().equals("Preta")) {
             if (posicaoNoTabuleiro > 15) {
                 this.primMov = false;
             }
@@ -27,13 +27,13 @@ public class Peao extends Peca{
             }
             if (posicoesTabuleiro.get(posicaoNoTabuleiro + 9).getPeca() != null
                     && !validaExtremidade(posicaoNoTabuleiro + 1)) {
-                if (posicoesTabuleiro.get(posicaoNoTabuleiro + 9).getPeca().getCor().equals("Branco")) {
+                if (posicoesTabuleiro.get(posicaoNoTabuleiro + 9).getPeca().getCor().equals("Branca")) {
                     possiveisMovimentos.add(posicoesTabuleiro.get(posicaoNoTabuleiro + 9));
                 }
             }
             if (posicoesTabuleiro.get(posicaoNoTabuleiro + 7).getPeca() != null
                     && !validaExtremidade(posicaoNoTabuleiro)) {
-                if (posicoesTabuleiro.get(posicaoNoTabuleiro + 7).getPeca().getCor().equals("Branco")) {
+                if (posicoesTabuleiro.get(posicaoNoTabuleiro + 7).getPeca().getCor().equals("Branca")) {
                     possiveisMovimentos.add(posicoesTabuleiro.get(posicaoNoTabuleiro + 7));
                 }
             }
@@ -51,13 +51,13 @@ public class Peao extends Peca{
             }
             if (posicoesTabuleiro.get(posicaoNoTabuleiro - 9).getPeca() != null
                     && !validaExtremidade(posicaoNoTabuleiro)) {
-                if (posicoesTabuleiro.get(posicaoNoTabuleiro - 9).getPeca().getCor().equals("Preto")) {
+                if (posicoesTabuleiro.get(posicaoNoTabuleiro - 9).getPeca().getCor().equals("Preta")) {
                     possiveisMovimentos.add(posicoesTabuleiro.get(posicaoNoTabuleiro - 9));
                 }
             }
             if (posicoesTabuleiro.get(posicaoNoTabuleiro - 7).getPeca() != null
                     && !validaExtremidade(posicaoNoTabuleiro + 1)) {
-                if (posicoesTabuleiro.get(posicaoNoTabuleiro - 7).getPeca().getCor().equals("Preto")) {
+                if (posicoesTabuleiro.get(posicaoNoTabuleiro - 7).getPeca().getCor().equals("Preta")) {
                     possiveisMovimentos.add(posicoesTabuleiro.get(posicaoNoTabuleiro - 7));
                     posicoesTabuleiro.get(posicaoNoTabuleiro - 7).setNumeroPosicao(posicaoNoTabuleiro - 7);
                 }
@@ -69,7 +69,7 @@ public class Peao extends Peca{
 
     @Override
     public String toString() {
-        if (this.getCor().equals("Branco")) {
+        if (this.getCor().equals("Branca")) {
             return "♙";
         } else {
             return "♟";

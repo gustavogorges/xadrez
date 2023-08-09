@@ -69,7 +69,7 @@ public class Cavalo extends Peca {
 
     @Override
     public String toString() {
-        if (this.getCor().equals("Branco")) {
+        if (this.getCor().equals("Branca")) {
             return "♘";
         } else {
             return "♞";

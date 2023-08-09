@@ -7,42 +7,42 @@ public class Tabuleiro {
         for (int i = 0; i < 64; i++) {
             posicoes.add(new Posicao());
             if(i >= 8 && i <= 15){
-                posicoes.get(i).setPeca(new Peao(posicoes.get(i),"Preto"));
+                posicoes.get(i).setPeca(new Peao(posicoes.get(i),"Preta"));
             }
             if(i >= 48 && i <= 55){
-                posicoes.get(i).setPeca(new Peao(posicoes.get(i),"Branco"));
+                posicoes.get(i).setPeca(new Peao(posicoes.get(i),"Branca"));
             }
             if(i == 0 || i == 7) {
-                posicoes.get(i).setPeca(new Torre(posicoes.get(i),"Preto"));
+                posicoes.get(i).setPeca(new Torre(posicoes.get(i),"Preta"));
             }
             if(i == 56 || i == 63) {
-                posicoes.get(i).setPeca(new Torre(posicoes.get(i),"Branco"));
+                posicoes.get(i).setPeca(new Torre(posicoes.get(i),"Branca"));
             }
 
             if(i == 1 || i == 6) {
-                posicoes.get(i).setPeca(new Cavalo(posicoes.get(i),"Preto"));
+                posicoes.get(i).setPeca(new Cavalo(posicoes.get(i),"Preta"));
             }
             if(i == 57 || i == 62) {
-                posicoes.get(i).setPeca(new Cavalo(posicoes.get(i),"Branco"));
+                posicoes.get(i).setPeca(new Cavalo(posicoes.get(i),"Branca"));
             }
 
             if(i == 2 || i == 5) {
-                posicoes.get(i).setPeca(new Bispo(posicoes.get(i),"Preto"));
+                posicoes.get(i).setPeca(new Bispo(posicoes.get(i),"Preta"));
             }
             if(i == 58 || i == 61) {
-                posicoes.get(i).setPeca(new Bispo(posicoes.get(i),"Branco"));
+                posicoes.get(i).setPeca(new Bispo(posicoes.get(i),"Branca"));
             }
             if(i == 3 ) {
-                posicoes.get(i).setPeca(new Rainha(posicoes.get(i),"Preto"));
+                posicoes.get(i).setPeca(new Rainha(posicoes.get(i),"Preta"));
             }
             if(i == 59) {
-                posicoes.get(i).setPeca(new Rainha(posicoes.get(i),"Branco"));
+                posicoes.get(i).setPeca(new Rainha(posicoes.get(i),"Branca"));
             }
             if(i == 4) {
-                posicoes.get(i).setPeca(new Rei(posicoes.get(i),"Preto"));
+                posicoes.get(i).setPeca(new Rei(posicoes.get(i),"Preta"));
             }
             if(i == 60) {
-                posicoes.get(i).setPeca(new Rei(posicoes.get(i),"Branco"));
+                posicoes.get(i).setPeca(new Rei(posicoes.get(i),"Branca"));
             }
         }
     }

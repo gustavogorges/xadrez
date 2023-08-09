@@ -78,6 +78,17 @@ public class Executavel {
                     cont = 2;
                 }
                 System.out.println(tabuleiroPecas);
+
+                if(jogadorAtual == j1) {
+                    if(verificaXeque(j2.getPecas(), tabuleiroPecas)) {
+                        System.out.println("/////// JOGADOR 1, SEU REI ESTÁ EM XEQUE ///////");
+                    }
+                } else {
+                    if(verificaXeque(j1.getPecas(), tabuleiroPecas)) {
+                        System.out.println("/////// JOGADOR 2, SEU REI ESTÁ EM XEQUE ///////");
+                    }
+                }
+
                 // Escolha da peça jogador
                 System.out.println("Escolha da peça jogador "+cont+" das peças "+jogadorAtual.getCor()+"s : ");
 //                System.out.println(jogadorAtual.getPecas());
@@ -94,6 +105,7 @@ public class Executavel {
                 int escolhaPosicao = sc.nextInt();
                 Posicao posicaoEscolhida = tabuleiroPecas.getPosicoes().get(escolhaPosicao);
                 jogadorAtual.moverPeca(pecaEscolhida, posicaoEscolhida, tabuleiroPecas, j2);
+
 
 
 
@@ -181,6 +193,35 @@ public class Executavel {
             }
         }
         return false;
+    }
+
+    public static boolean verificaXeque(ArrayList<Peca> pecaInimigas, Tabuleiro tabuleiro) {
+        //System.out.println("entrou no verifica xeque");
+        System.out.println(pecaInimigas);
+        for (Peca pecasFor : pecaInimigas) {
+
+                Peca pecaInimiga = pecasFor;
+                for (Posicao pecaFor2 : pecaInimiga.possiveisMovimentos(tabuleiro)) {
+                 //   System.out.println("entrou no for pecaFor2");
+                    if(pecaFor2.getPeca() instanceof Rei) {
+                        return true;
+                    }
+                }
+        }
+
+        return false;
+    }
+
+    public static ArrayList<Peca> verificaFuga(ArrayList<Peca> pecasAmigas, Tabuleiro tabuleiro) {
+        for ( Peca pecaFor : pecasAmigas ) {
+            simulaMovimento(pecaFor);
+        }
+    }
+
+    public static ArrayList<Posicao> simulaMovimento(Peca pecaFor) {
+        for (:) {
+            
+        }
     }
 }
 
