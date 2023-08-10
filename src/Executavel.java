@@ -82,10 +82,12 @@ public class Executavel {
                 if(jogadorAtual == j1) {
                     if(verificaXeque(j2.getPecas(), tabuleiroPecas)) {
                         System.out.println("/////// JOGADOR 1, SEU REI ESTÁ EM XEQUE ///////");
+                        verificaFuga(j1.getPecas(), tabuleiroPecas, j2.getPecas());
                     }
                 } else {
                     if(verificaXeque(j1.getPecas(), tabuleiroPecas)) {
                         System.out.println("/////// JOGADOR 2, SEU REI ESTÁ EM XEQUE ///////");
+                        verificaFuga(j1.getPecas(), tabuleiroPecas, j2.getPecas());
                     }
                 }
 
@@ -212,16 +214,26 @@ public class Executavel {
         return false;
     }
 
-    public static ArrayList<Peca> verificaFuga(ArrayList<Peca> pecasAmigas, Tabuleiro tabuleiro) {
+    public static void verificaFuga(ArrayList<Peca> pecasAmigas, Tabuleiro tabuleiro, ArrayList<Peca> pecasInimigas) {
+        System.out.println("Entrou no verifica fuga !");
         for ( Peca pecaFor : pecasAmigas ) {
-            simulaMovimento(pecaFor);
+            if (simulaMovimento(pecaFor,tabuleiro, pecasInimigas) != null) {
+                System.out.println("A peça "+pecaFor+" pode salvar o seu rei.");
+            }
         }
     }
 
-    public static ArrayList<Posicao> simulaMovimento(Peca pecaFor) {
-        for (:) {
-            
+    public static ArrayList<Peca> simulaMovimento(Peca pecaFor, Tabuleiro tabuleiro, ArrayList<Peca> pecasInimigas) {
+        ArrayList<Peca> pecasPossiveis = new ArrayList<>();
+        for (Posicao possivelPosicao : pecaFor.possiveisMovimentos(tabuleiro)) {
+            System.out.println(tabuleiro.getPosicoes().indexOf(pecaFor.getPosicao()));
+            pecaFor.mover(tabuleiro, possivelPosicao);
+            System.out.println(tabuleiro.getPosicoes().indexOf(pecaFor.getPosicao()));
+            if(!verificaXeque(pecasInimigas, tabuleiro)) {
+                pecasPossiveis.add(pecaFor);
+            }
         }
+        return pecasPossiveis;
     }
 }
 
