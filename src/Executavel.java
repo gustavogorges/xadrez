@@ -81,14 +81,14 @@ public class Executavel {
             System.out.println(tabuleiroPecas);
 
             if (jogadorAtual == j1) {
-                if (verificaXeque(j2.getPecas(), tabuleiroPecas) != null) {
+                if (verificaXeque(j2.getPecas(), tabuleiroPecas)) {
                     System.out.println("/////// JOGADOR 1, SEU REI ESTÁ EM XEQUE ///////");
-                    System.out.println(verificaFuga(j1.getPecas(), tabuleiroPecas, verificaXeque(j2.getPecas(),tabuleiroPecas)));
+                    verificaFuga(j1.getPecas(), tabuleiroPecas, j2.getPecas());
                 }
             } else {
-                if (verificaXeque(j1.getPecas(), tabuleiroPecas) != null) {
+                if (verificaXeque(j1.getPecas(), tabuleiroPecas)) {
                     System.out.println("/////// JOGADOR 2, SEU REI ESTÁ EM XEQUE ///////");
-                    System.out.println(verificaFuga(j2.getPecas(), tabuleiroPecas, verificaXeque(j1.getPecas(),tabuleiroPecas)));
+                    verificaFuga(j2.getPecas(), tabuleiroPecas, j1.getPecas());
                 }
             }
 
@@ -196,32 +196,38 @@ public class Executavel {
         return false;
     }
 
-    public static Peca verificaXeque(ArrayList<Peca> pecaInimigas, Tabuleiro tabuleiro) {
+    public static Boolean verificaXeque(ArrayList<Peca> pecaInimigas, Tabuleiro tabuleiro) {
         //System.out.println("entrou no verifica xeque");
         for (Peca pecasFor : pecaInimigas) {
 
             Peca pecaInimiga = pecasFor;
             for (Posicao pecaFor2 : pecaInimiga.possiveisMovimentos(tabuleiro)) {
-                //   System.out.println("entrou no for pecaFor2");
                 if (pecaFor2.getPeca() instanceof Rei) {
-                    return pecaInimiga;
+                    return true;
                 }
             }
         }
 
-        return null;
+        return false;
     }
 
-    public static ArrayList<Peca> verificaFuga(ArrayList<Peca> pecasAmigas, Tabuleiro tabuleiro, Peca pecaInimiga) {
+    public static ArrayList<Peca> verificaFuga(ArrayList<Peca> pecasAmigas, Tabuleiro tabuleiro, ArrayList<Peca> pecasInimigas) {
         ArrayList<Peca> pecasPossiveis = new ArrayList<>();
-//        System.out.println("Entrou no verifica fuga !");
-        for (Posicao possiveisMovimentosPecaInimiga : ) {
-            // pegar os possiveis movimentos da peça inimiga que afetam o rei, para então fazer a verificação dos possiveis movimentos das peças amigas que interferem ou anulam este movimento
+        Peca pecaMorta;
+        for (Peca pecaFor: pecasAmigas) {
+            Peca pecaTeste = pecaFor;
+            Posicao posicaoAntiga = pecaFor.getPosicao();
+            for (Posicao possivelMovimento:pecaTeste.possiveisMovimentos(tabuleiro)) {
+                pecaMorta = possivelMovimento.getPeca();
+                pecaTeste.mover(tabuleiro, possivelMovimento);
+                if(!verificaXeque(pecasInimigas,tabuleiro)) {
+                    System.out.println(pecaTeste + " salva o rei!");
+                }
+                pecaTeste.setPosicao(posicaoAntiga);
+                tabuleiro.getPosicoes().get(tabuleiro.getPosicoes().indexOf(posicaoAntiga)).setPeca(pecaTeste);
+                possivelMovimento.setPeca(pecaMorta);
+            }
         }
         return pecasPossiveis;
     }
-
-//    public static boolean simulaMovimento(Peca pecaFor, Tabuleiro tabuleiro, ArrayList<Peca> pecasInimigas) {
-//
-//    }
 }

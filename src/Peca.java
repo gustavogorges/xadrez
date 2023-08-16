@@ -23,8 +23,7 @@ public abstract class Peca {
 
     public boolean mover(
             Tabuleiro tabuleiro,
-            Posicao posicao
-    ) {
+            Posicao posicao) {
         ArrayList<Posicao> possiveisPosicoes = possiveisMovimentos(tabuleiro);
         for (Posicao posicaoPossivel: possiveisPosicoes) {
             if(posicaoPossivel == posicao) {
