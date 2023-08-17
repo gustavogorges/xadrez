@@ -81,14 +81,36 @@ public class Executavel {
             System.out.println(tabuleiroPecas);
 
             if (jogadorAtual == j1) {
+                Peca pecaReiJ1 = null;
                 if (verificaXeque(j2.getPecas(), tabuleiroPecas)) {
-                    System.out.println("/////// JOGADOR 1, SEU REI ESTÁ EM XEQUE ///////");
-                    verificaFuga(j1.getPecas(), tabuleiroPecas, j2.getPecas());
+                    for (Peca pecaRei : j1.getPecas()) {
+                        if(pecaRei instanceof Rei) {
+                            pecaReiJ1 = pecaRei;
+                        }
+                    }
+                    System.out.println(verificaFuga(j1.getPecas(),tabuleiroPecas,j2.getPecas()));
+                    System.out.println(pecaReiJ1.possiveisMovimentos(tabuleiroPecas));
+                    if(verificaFuga(j1.getPecas(), tabuleiroPecas, j2.getPecas()).size()==0 && pecaReiJ1.possiveisMovimentos(tabuleiroPecas).size()==0) {
+                        System.out.println("XEQUE MATE O JOGO ACABOU, JOGADOR 2 GANHOU!");
+                        System.exit(0);
+                    } else {
+                        System.out.println("/////// JOGADOR 1, SEU REI ESTÁ EM XEQUE ///////");
+                    }
                 }
             } else {
+                Peca pecaReiJ2 = null;
+                for (Peca pecaRei : j2.getPecas()) {
+                    if(pecaRei instanceof Rei) {
+                        pecaReiJ2 = pecaRei;
+                    }
+                }
                 if (verificaXeque(j1.getPecas(), tabuleiroPecas)) {
-                    System.out.println("/////// JOGADOR 2, SEU REI ESTÁ EM XEQUE ///////");
-                    verificaFuga(j2.getPecas(), tabuleiroPecas, j1.getPecas());
+                    if(verificaFuga(j2.getPecas(), tabuleiroPecas, j1.getPecas()).size()==0 && pecaReiJ2.possiveisMovimentos(tabuleiroPecas).size()==0) {
+                        System.out.println("XEQUE MATE O JOGO ACABOU, JOGADOR 1 GANHOU!");
+                        System.exit(0);
+                    } else {
+                        System.out.println("/////// JOGADOR 2, SEU REI ESTÁ EM XEQUE ///////");
+                    }
                 }
             }
 
@@ -199,7 +221,6 @@ public class Executavel {
     public static Boolean verificaXeque(ArrayList<Peca> pecaInimigas, Tabuleiro tabuleiro) {
         //System.out.println("entrou no verifica xeque");
         for (Peca pecasFor : pecaInimigas) {
-
             Peca pecaInimiga = pecasFor;
             for (Posicao pecaFor2 : pecaInimiga.possiveisMovimentos(tabuleiro)) {
                 if (pecaFor2.getPeca() instanceof Rei) {
@@ -222,12 +243,17 @@ public class Executavel {
                 pecaTeste.mover(tabuleiro, possivelMovimento);
                 if(!verificaXeque(pecasInimigas,tabuleiro)) {
                     System.out.println(pecaTeste + " salva o rei!");
+                    pecasPossiveis.add(pecaTeste);
                 }
                 pecaTeste.setPosicao(posicaoAntiga);
                 tabuleiro.getPosicoes().get(tabuleiro.getPosicoes().indexOf(posicaoAntiga)).setPeca(pecaTeste);
                 possivelMovimento.setPeca(pecaMorta);
             }
         }
-        return pecasPossiveis;
+        if(pecasPossiveis != null) {
+            return pecasPossiveis;
+        } else {
+            return null;
+        }
     }
 }
